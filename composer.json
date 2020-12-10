@@ -2,7 +2,9 @@
     "name": "vjik/acf-helper",
     "type": "library",
     "description": "Helper for ACF",
+    "version": "0.1",
     "keywords": [
+        "wordpress",
         "acf"
     ],
     "license": "BSD-3-Clause",
