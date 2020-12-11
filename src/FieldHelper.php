@@ -6,6 +6,7 @@ namespace Vjik\AcfHelper;
 
 use RuntimeException;
 use Vjik\SimpleTypeCaster\TypeCaster;
+use WP_Post;
 
 final class FieldHelper
 {
@@ -57,6 +58,18 @@ final class FieldHelper
         return TypeCaster::toArray(
             self::get($selector, $postId, $formatValue)
         );
+    }
+
+    /**
+     * @param string $selector
+     * @param false $postId
+     * @param bool $formatValue
+     * @return WP_Post|null
+     */
+    public static function getPostOrNull(string $selector, $postId = false, bool $formatValue = true): ?WP_Post
+    {
+        $value = self::get($selector, $postId, $formatValue);
+        return $value instanceof WP_Post ? $value : null;
     }
 
     /**
