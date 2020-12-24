@@ -62,6 +62,23 @@ final class FieldHelper
 
     /**
      * @param string $selector
+     * @param mixed $postId
+     * @param bool $formatValue
+     * @return WP_Post[]
+     */
+    public static function getArrayOfPosts(string $selector, $postId = false, bool $formatValue = true): array
+    {
+        $posts = [];
+        foreach (self::getArray($selector, $postId, $formatValue) as $value) {
+            if ($value instanceof WP_Post) {
+                $posts[] = $value;
+            }
+        }
+        return $posts;
+    }
+
+    /**
+     * @param string $selector
      * @param false $postId
      * @param bool $formatValue
      * @return WP_Post|null
