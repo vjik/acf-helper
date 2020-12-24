@@ -8,8 +8,8 @@
 
 The package could be installed with [composer](https://getcomposer.org/download/):
 
-```
-composer install vjik/acf-helper
+```shell
+composer require vjik/acf-helper
 ```
 
 ## General usage
