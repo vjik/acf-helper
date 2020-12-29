@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vjik\AcfHelper;
 
+use DateTimeImmutable;
 use RuntimeException;
 use Vjik\SimpleTypeCaster\TypeCaster;
 use WP_Post;
@@ -87,6 +88,30 @@ final class FieldHelper
     {
         $value = self::get($selector, $postId, $formatValue);
         return $value instanceof WP_Post ? $value : null;
+    }
+
+    /**
+     * @param string $selector
+     * @param false $postId
+     * @param bool $formatValue
+     * @return DateTimeImmutable|null
+     */
+    public static function getDateTimeImmutableOrNull(
+        string $selector,
+        $postId = false,
+        bool $formatValue = true
+    ): ?DateTimeImmutable {
+        $value = self::getStringOrNull($selector, $postId, $formatValue);
+        if ($value === null) {
+            return null;
+        }
+
+        $timestamp = (int)$value;
+        if ((string)$timestamp !== $value) {
+            return null;
+        }
+
+        return (new DateTimeImmutable())->setTimestamp($timestamp);
     }
 
     /**
