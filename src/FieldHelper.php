@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vjik\AcfHelper;
 
 use DateTimeImmutable;
+use Exception;
 use RuntimeException;
 use Vjik\SimpleTypeCaster\TypeCaster;
 use WP_Post;
@@ -107,11 +108,15 @@ final class FieldHelper
         }
 
         $timestamp = (int)$value;
-        if ((string)$timestamp !== $value) {
-            return null;
+        if ((string)$timestamp === $value) {
+            return (new DateTimeImmutable())->setTimestamp($timestamp);
         }
 
-        return (new DateTimeImmutable())->setTimestamp($timestamp);
+        try {
+            return (new DateTimeImmutable($value));
+        } catch (Exception $e) {
+            return null;
+        }
     }
 
     /**
