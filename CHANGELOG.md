@@ -1,5 +1,9 @@
 # ACF Helper Change Log
 
+## 0.4.1 — 11.03.2021
+
+- Enh: Add support `vjik/simple-type-caster` version 0.2.
+
 ## 0.4.0 — 29.12.2020
 
 - Enh: Add method `FieldHelper::getDateTimeImmutableOrNull()`.
