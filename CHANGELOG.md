@@ -2,7 +2,7 @@
 
 ## 0.5.0 under development
 
-- No changes in this release.
+- Add PHP 8 support.
 
 ## 0.4.1 — 11.03.2021
 

@@ -13,13 +13,13 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "vjik/simple-type-caster": "^0.1|^0.2"
     },
     "require-dev": {
         "johnpbloch/wordpress-core": "^5.7",
         "phpunit/phpunit": "^9.5",
-        "vimeo/psalm": "^4.6"
+        "vimeo/psalm": "^4.7"
     },
     "autoload": {
         "psr-4": {

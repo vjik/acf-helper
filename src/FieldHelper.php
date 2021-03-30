@@ -10,13 +10,12 @@ use RuntimeException;
 use Vjik\SimpleTypeCaster\TypeCaster;
 use WP_Post;
 
+use function function_exists;
+
 final class FieldHelper
 {
     /**
-     * @param string $selector
      * @param mixed $postId
-     * @param bool $formatValue
-     * @return int|null
      */
     public static function getIntOrNull(string $selector, $postId = false, bool $formatValue = true): ?int
     {
@@ -26,10 +25,7 @@ final class FieldHelper
     }
 
     /**
-     * @param string $selector
      * @param mixed $postId
-     * @param bool $formatValue
-     * @return string|null
      */
     public static function getStringOrNull(string $selector, $postId = false, bool $formatValue = true): ?string
     {
@@ -39,10 +35,7 @@ final class FieldHelper
     }
 
     /**
-     * @param string $selector
      * @param mixed $postId
-     * @param bool $formatValue
-     * @return bool
      */
     public static function getBool(string $selector, $postId = false, bool $formatValue = true): bool
     {
@@ -50,10 +43,7 @@ final class FieldHelper
     }
 
     /**
-     * @param string $selector
      * @param mixed $postId
-     * @param bool $formatValue
-     * @return array
      */
     public static function getArray(string $selector, $postId = false, bool $formatValue = true): array
     {
@@ -63,9 +53,8 @@ final class FieldHelper
     }
 
     /**
-     * @param string $selector
      * @param mixed $postId
-     * @param bool $formatValue
+     *
      * @return WP_Post[]
      */
     public static function getArrayOfPosts(string $selector, $postId = false, bool $formatValue = true): array
@@ -80,10 +69,7 @@ final class FieldHelper
     }
 
     /**
-     * @param string $selector
-     * @param false $postId
-     * @param bool $formatValue
-     * @return WP_Post|null
+     * @param mixed $postId
      */
     public static function getPostOrNull(string $selector, $postId = false, bool $formatValue = true): ?WP_Post
     {
@@ -92,10 +78,7 @@ final class FieldHelper
     }
 
     /**
-     * @param string $selector
-     * @param false $postId
-     * @param bool $formatValue
-     * @return DateTimeImmutable|null
+     * @param mixed $postId
      */
     public static function getDateTimeImmutableOrNull(
         string $selector,
@@ -120,9 +103,8 @@ final class FieldHelper
     }
 
     /**
-     * @param string $selector
      * @param mixed $postId
-     * @param bool $formatValue
+     *
      * @return mixed
      */
     private static function get(string $selector, $postId = false, bool $formatValue = true)
