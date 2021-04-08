@@ -2,7 +2,7 @@
 
 ## 0.4.3 — 08.04.2021
 
-- Enh: Add `BlockFieldHElper`.
+- Enh: Add `BlockFieldHelper`.
 
 ## 0.4.2 — 30.03.2021
 
