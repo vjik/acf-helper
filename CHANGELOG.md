@@ -1,12 +1,12 @@
 # ACF Helper Change Log
 
-## 0.5.0 under development
+## 0.4.3 — 08.04.2021
 
-- No changes in this release.
+- Enh: Add `BlockFieldHElper`.
 
 ## 0.4.2 — 30.03.2021
 
-- Add PHP 8 support.
+- Enh: Add PHP 8 support.
 
 ## 0.4.1 — 11.03.2021
 
