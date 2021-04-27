@@ -54,6 +54,16 @@ final class FieldHelper
 
     /**
      * @param mixed $postId
+     */
+    public static function getArrayOrNull(string $selector, $postId = false, bool $formatValue = true): array
+    {
+        return TypeCaster::toArrayOrNull(
+            self::get($selector, $postId, $formatValue)
+        );
+    }
+
+    /**
+     * @param mixed $postId
      *
      * @return WP_Post[]
      */
