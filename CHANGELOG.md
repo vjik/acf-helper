@@ -1,5 +1,9 @@
 # ACF Helper Change Log
 
+## 0.4.4.1 — 27.04.2021
+
+- Fixed: `BlockFieldHelper::getValue()` in some cases return incorrect value.
+
 ## 0.4.4 — 27.04.2021
 
 - Enh: Add `FieldHelper::getArrayOrNull()`.
