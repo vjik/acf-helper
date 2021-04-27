@@ -13,7 +13,6 @@ use function array_key_exists;
 use function count;
 use function function_exists;
 use function is_array;
-use function is_string;
 
 final class BlockFieldHelper
 {
@@ -40,11 +39,14 @@ final class BlockFieldHelper
      */
     public static function getValue(string $selector, string $fullBlockId, bool $formatValue = true)
     {
-        if (!function_exists('acf_maybe_get_field')) {
-            throw new RuntimeException('Function "acf_maybe_get_field" not found.');
+        if (!function_exists('acf_setup_meta')) {
+            throw new RuntimeException('Function "acf_setup_meta" not found.');
         }
-        if (!function_exists('acf_format_value')) {
-            throw new RuntimeException('Function "acf_format_value" not found.');
+        if (!function_exists('get_field')) {
+            throw new RuntimeException('Function "get_field" not found.');
+        }
+        if (!function_exists('acf_reset_meta')) {
+            throw new RuntimeException('Function "acf_reset_meta" not found.');
         }
 
         $ids = explode(self::ID_SEPARATOR, $fullBlockId, 2);
@@ -76,17 +78,9 @@ final class BlockFieldHelper
                     return null;
                 }
 
-                $value = $data[$selector];
-
-                if ($formatValue) {
-                    $fieldId = $data['_' . $selector] ?? null;
-                    if (is_string($fieldId) && $fieldId !== '') {
-                        $field = acf_maybe_get_field($fieldId);
-                        if ($field !== false) {
-                            $value = acf_format_value($value, 0, $field);
-                        }
-                    }
-                }
+                acf_setup_meta($data, $blockId, true);
+                $value = get_field($selector, false, $formatValue);
+                acf_reset_meta($blockId);
 
                 return $value;
             }
