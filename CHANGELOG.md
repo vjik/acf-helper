@@ -1,5 +1,9 @@
 # ACF Helper Change Log
 
+## 0.4.5 — 04.05.2021
+
+- Enh: Add `BlockFieldHelper::getPostId()`.
+
 ## 0.4.4.2 — 04.05.2021
 
 - Fixed: `FieldHelper::getArrayOrNull()` throws error on returned null.

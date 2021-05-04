@@ -34,6 +34,16 @@ final class BlockFieldHelper
         );
     }
 
+    public static function getPostId(string $fullBlockId): ?int
+    {
+        $ids = explode(self::ID_SEPARATOR, $fullBlockId, 2);
+        if (count($ids) !== 2) {
+            return null;
+        }
+
+        return TypeCaster::toIntOrNull($ids[0]);
+    }
+
     /**
      * @return mixed
      */
