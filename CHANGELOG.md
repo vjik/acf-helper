@@ -1,5 +1,9 @@
 # ACF Helper Change Log
 
+## 0.4.7 — 04.04.2022
+
+- Enh: Add `FieldHelper::getArrayOfArrays()`.
+
 ## 0.4.6 — 17.01.2022
 
 - Enh: Add support for `yiisoft/arrays` version `^2.0`.

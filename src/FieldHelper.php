@@ -11,6 +11,7 @@ use Vjik\SimpleTypeCaster\TypeCaster;
 use WP_Post;
 
 use function function_exists;
+use function is_array;
 
 final class FieldHelper
 {
@@ -60,6 +61,22 @@ final class FieldHelper
         return TypeCaster::toArrayOrNull(
             self::get($selector, $postId, $formatValue)
         );
+    }
+
+    /**
+     * @param mixed $postId
+     *
+     * @return array[]
+     */
+    public static function getArrayOfArrays(string $selector, $postId = false, bool $formatValue = true): array
+    {
+        $arrays = [];
+        foreach (self::getArray($selector, $postId, $formatValue) as $value) {
+            if (is_array($value)) {
+                $arrays[] = $value;
+            }
+        }
+        return $arrays;
     }
 
     /**
