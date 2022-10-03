@@ -1,5 +1,9 @@
 # ACF Helper Change Log
 
+## 0.5.0 — 03.10.2022
+
+- Chg: Adopt `BlockFieldHelper` to ACF 6.
+
 ## 0.4.7 — 04.04.2022
 
 - Enh: Add `FieldHelper::getArrayOfArrays()`.

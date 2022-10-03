@@ -14,7 +14,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^7.4|^8.0",
-        "vjik/simple-type-caster": "0.2.2",
+        "vjik/simple-type-caster": "^0.2.2",
         "yiisoft/arrays": "^1.0|^2.0",
         "yiisoft/strings": "^2.0"
     },

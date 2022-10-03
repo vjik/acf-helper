@@ -7,14 +7,14 @@
 
 - PHP 7.4 or higher;
 - WordPress 5.6 or higher;
-- Advanced Custom Fields 5.9 or higher.
+- Advanced Custom Fields 6.0 or higher.
 
 ## Installation
 
 The package could be installed with [composer](https://getcomposer.org/download/):
 
 ```shell
-composer require vjik/acf-helper --prefer-dist
+composer require vjik/acf-helper
 ```
 
 ## General usage

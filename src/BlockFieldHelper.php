@@ -16,15 +16,28 @@ use function is_array;
 
 final class BlockFieldHelper
 {
+    private const ID_KEY = 'acf-field-id';
     private const ID_SEPARATOR = '~';
 
-    public static function getFullBlockId(): string
+    public static function useBlockId(string $blockName, ?string $idPrefix = null): void
     {
-        if (!function_exists('acf_get_valid_post_id')) {
-            throw new RuntimeException('Function "acf_get_valid_post_id" not found.');
-        }
+        add_filter(
+            'acf/pre_save_block',
+            static function ($attributes) use ($blockName, $idPrefix) {
+                if (($attributes['name'] ?? '') === ('acf/' . $blockName)) {
+                    $attributes[self::ID_KEY] = uniqid($idPrefix ?? '', true);
+                }
+                return $attributes;
+            }
+        );
+    }
 
-        return get_the_ID() . self::ID_SEPARATOR . acf_get_valid_post_id();
+    /**
+     * @param array $attributes The block attributes.
+     */
+    public static function getFullBlockId(array $attributes): string
+    {
+        return get_the_ID() . self::ID_SEPARATOR . ($attributes[self::ID_KEY] ?? '');
     }
 
     public static function getStringOrNull(string $selector, string $fullBlockId, bool $formatValue = true): ?string
@@ -68,7 +81,7 @@ final class BlockFieldHelper
         if (!NumericHelper::isInteger($postId)) {
             return null;
         }
-        $postId = (int)$postId;
+        $postId = (int) $postId;
 
         $blockId = $ids[1];
         if (empty($blockId)) {
@@ -82,7 +95,7 @@ final class BlockFieldHelper
 
         $blocks = parse_blocks($post->post_content);
         foreach ($blocks as $block) {
-            if (is_array($block) && ArrayHelper::getValue($block, ['attrs', 'id']) === $blockId) {
+            if (is_array($block) && ArrayHelper::getValue($block, ['attrs', self::ID_KEY]) === $blockId) {
                 $data = $block['attrs']['data'] ?? [];
                 if (!is_array($data) || !array_key_exists($selector, $data)) {
                     return null;
