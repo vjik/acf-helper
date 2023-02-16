@@ -1,5 +1,9 @@
 # ACF Helper Change Log
 
+## 0.5.1 — 16.02.2023
+
+- Enh: Add support for `yiisoft/arrays` version `^3.0`.
+
 ## 0.5.0 — 03.10.2022
 
 - Chg: Adopt `BlockFieldHelper` to ACF 6.
