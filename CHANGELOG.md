@@ -1,5 +1,9 @@
 # ACF Helper Change Log
 
+## 0.5.2 — 15.06.2023
+
+- Enh: Add `FieldHelper::getString()`.
+
 ## 0.5.1 — 16.02.2023
 
 - Enh: Add support for `yiisoft/arrays` version `^3.0`.

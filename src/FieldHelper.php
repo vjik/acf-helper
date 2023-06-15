@@ -38,6 +38,16 @@ final class FieldHelper
     /**
      * @param mixed $postId
      */
+    public static function getString(string $selector, $postId = false, bool $formatValue = true): string
+    {
+        return TypeCaster::toString(
+            self::get($selector, $postId, $formatValue)
+        );
+    }
+
+    /**
+     * @param mixed $postId
+     */
     public static function getBool(string $selector, $postId = false, bool $formatValue = true): bool
     {
         return (bool)self::get($selector, $postId, $formatValue);
