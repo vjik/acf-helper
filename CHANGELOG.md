@@ -1,5 +1,9 @@
 # ACF Helper Change Log
 
+## 0.5.3 — 16.06.2023
+
+- Enh: Add support of nested blocks in `BlockFieldHelper`.
+
 ## 0.5.2 — 15.06.2023
 
 - Enh: Add `FieldHelper::getString()`.

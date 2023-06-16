@@ -94,21 +94,40 @@ final class BlockFieldHelper
         }
 
         $blocks = parse_blocks($post->post_content);
+
+        return self::searchValueInBlocks($blocks, $blockId, $selector, $formatValue);
+    }
+
+    private static function searchValueInBlocks(
+        array $blocks,
+        string $blockId,
+        string $selector,
+        bool $formatValue
+    ): mixed {
         foreach ($blocks as $block) {
-            if (is_array($block) && ArrayHelper::getValue($block, ['attrs', self::ID_KEY]) === $blockId) {
-                $data = $block['attrs']['data'] ?? [];
-                if (!is_array($data) || !array_key_exists($selector, $data)) {
-                    return null;
+            if (is_array($block)) {
+                if (ArrayHelper::getValue($block, ['attrs', self::ID_KEY]) === $blockId) {
+                    $data = $block['attrs']['data'] ?? [];
+                    if (!is_array($data) || !array_key_exists($selector, $data)) {
+                        return null;
+                    }
+
+                    acf_setup_meta($data, $blockId, true);
+                    $value = get_field($selector, false, $formatValue);
+                    acf_reset_meta($blockId);
+
+                    return $value;
                 }
 
-                acf_setup_meta($data, $blockId, true);
-                $value = get_field($selector, false, $formatValue);
-                acf_reset_meta($blockId);
-
-                return $value;
+                $innerBlocks = ArrayHelper::getValue($block, ['innerBlocks']);
+                if (is_array($innerBlocks)) {
+                    $value = self::searchValueInBlocks($innerBlocks, $blockId, $selector, $formatValue);
+                    if ($value !== null) {
+                        return $value;
+                    }
+                }
             }
         }
-
         return null;
     }
 }
