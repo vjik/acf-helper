@@ -5,7 +5,7 @@
 
 ## Requirements
 
-- PHP 7.4 or higher;
+- PHP 8.1 or higher;
 - WordPress 5.6 or higher;
 - Advanced Custom Fields 6.0 or higher.
 
