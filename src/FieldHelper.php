@@ -15,58 +15,52 @@ use function is_array;
 
 final class FieldHelper
 {
-    /**
-     * @param mixed $postId
-     */
-    public static function getIntOrNull(string $selector, $postId = false, bool $formatValue = true): ?int
+    public static function getIntOrNull(string $selector, mixed $postId = false, bool $formatValue = true): ?int
     {
         return TypeCaster::toIntOrNull(
             self::get($selector, $postId, $formatValue)
         );
     }
 
-    /**
-     * @param mixed $postId
-     */
-    public static function getStringOrNull(string $selector, $postId = false, bool $formatValue = true): ?string
+    public static function getStringOrNull(
+        string $selector,
+        mixed $postId = false,
+        bool $formatValue = true,
+        bool $trim = true,
+    ): ?string
     {
         return TypeCaster::toStringOrNull(
-            self::get($selector, $postId, $formatValue)
+            self::get($selector, $postId, $formatValue),
+            trim: $trim,
         );
     }
 
-    /**
-     * @param mixed $postId
-     */
-    public static function getString(string $selector, $postId = false, bool $formatValue = true): string
+    public static function getString(
+        string $selector,
+        mixed $postId = false,
+        bool $formatValue = true,
+        bool $trim = true,
+    ): string
     {
         return TypeCaster::toString(
-            self::get($selector, $postId, $formatValue)
+            self::get($selector, $postId, $formatValue),
+            trim: $trim,
         );
     }
 
-    /**
-     * @param mixed $postId
-     */
-    public static function getBool(string $selector, $postId = false, bool $formatValue = true): bool
+    public static function getBool(string $selector, mixed $postId = false, bool $formatValue = true): bool
     {
         return (bool)self::get($selector, $postId, $formatValue);
     }
 
-    /**
-     * @param mixed $postId
-     */
-    public static function getArray(string $selector, $postId = false, bool $formatValue = true): array
+    public static function getArray(string $selector, mixed $postId = false, bool $formatValue = true): array
     {
         return TypeCaster::toArray(
             self::get($selector, $postId, $formatValue)
         );
     }
 
-    /**
-     * @param mixed $postId
-     */
-    public static function getArrayOrNull(string $selector, $postId = false, bool $formatValue = true): ?array
+    public static function getArrayOrNull(string $selector, mixed $postId = false, bool $formatValue = true): ?array
     {
         return TypeCaster::toArrayOrNull(
             self::get($selector, $postId, $formatValue)
@@ -74,11 +68,9 @@ final class FieldHelper
     }
 
     /**
-     * @param mixed $postId
-     *
      * @return array[]
      */
-    public static function getArrayOfArrays(string $selector, $postId = false, bool $formatValue = true): array
+    public static function getArrayOfArrays(string $selector, mixed $postId = false, bool $formatValue = true): array
     {
         $arrays = [];
         foreach (self::getArray($selector, $postId, $formatValue) as $value) {
@@ -90,11 +82,9 @@ final class FieldHelper
     }
 
     /**
-     * @param mixed $postId
-     *
      * @return WP_Post[]
      */
-    public static function getArrayOfPosts(string $selector, $postId = false, bool $formatValue = true): array
+    public static function getArrayOfPosts(string $selector, mixed $postId = false, bool $formatValue = true): array
     {
         $posts = [];
         foreach (self::getArray($selector, $postId, $formatValue) as $value) {
@@ -105,21 +95,15 @@ final class FieldHelper
         return $posts;
     }
 
-    /**
-     * @param mixed $postId
-     */
-    public static function getPostOrNull(string $selector, $postId = false, bool $formatValue = true): ?WP_Post
+    public static function getPostOrNull(string $selector, mixed $postId = false, bool $formatValue = true): ?WP_Post
     {
         $value = self::get($selector, $postId, $formatValue);
         return $value instanceof WP_Post ? $value : null;
     }
 
-    /**
-     * @param mixed $postId
-     */
     public static function getDateTimeImmutableOrNull(
         string $selector,
-        $postId = false,
+        mixed $postId = false,
         bool $formatValue = true
     ): ?DateTimeImmutable {
         $value = self::getStringOrNull($selector, $postId, $formatValue);
@@ -139,12 +123,7 @@ final class FieldHelper
         }
     }
 
-    /**
-     * @param mixed $postId
-     *
-     * @return mixed
-     */
-    private static function get(string $selector, $postId = false, bool $formatValue = true)
+    private static function get(string $selector, mixed $postId = false, bool $formatValue = true): mixed
     {
         if (!function_exists('get_field')) {
             throw new RuntimeException('Function "get_field" not found.');

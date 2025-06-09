@@ -1,5 +1,11 @@
 # ACF Helper Change Log
 
+## 0.5.4 — 09.06.2025
+
+- Chg: Change PHP constraint in `composer.json` to `8.1 - 8.4`.
+- Chg: Bump required `vjik/simple-type-caster` version to `^0.4.5`.
+- Chg: Bump required `yiisoft/arrays` version to `^3.0`.
+
 ## 0.5.3 — 16.06.2023
 
 - Enh: Add support of nested blocks in `BlockFieldHelper`.

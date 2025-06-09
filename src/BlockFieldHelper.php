@@ -40,10 +40,16 @@ final class BlockFieldHelper
         return get_the_ID() . self::ID_SEPARATOR . ($attributes[self::ID_KEY] ?? '');
     }
 
-    public static function getStringOrNull(string $selector, string $fullBlockId, bool $formatValue = true): ?string
+    public static function getStringOrNull(
+        string $selector,
+        string $fullBlockId,
+        bool $formatValue = true,
+        bool $trim = true,
+    ): ?string
     {
         return TypeCaster::toStringOrNull(
-            self::getValue($selector, $fullBlockId, $formatValue)
+            self::getValue($selector, $fullBlockId, $formatValue),
+            trim: $trim,
         );
     }
 
